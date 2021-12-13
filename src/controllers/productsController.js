@@ -2,7 +2,11 @@ const fs = require('fs');
 const path = require('path');
 
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+const categoriesFilePath = path.join(__dirname, '../data/categories.json');
+
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const categories = JSON.parse(fs.readFileSync(categoriesFilePath, 'utf-8'));
+
 const imagesPath = path.join(__dirname, '../../public/images/products/');
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -50,7 +54,7 @@ const controller = {
 	edit: (req, res) => {
 		const id = Number(req.params.id);
 		const productToEdit = products.filter( product => product.id === id);
-		res.render('product-edit-form', {product: productToEdit[0]});
+		res.render('product-edit-form', {product: productToEdit[0], categories: categories});
 	},
 	// Update - Method to update
 	update: (req, res) => {

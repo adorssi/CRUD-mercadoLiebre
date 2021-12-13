@@ -30,6 +30,13 @@
 					<div class="col-12 col-md-6">
 						<label for="category" class="form-label">Categoría:</label>
 						<select name="category" id="category" class="form-input">
+							<% for(categoria of categories) { %>
+								<% if(categoria.name === product.category) { %>
+									<option value="<%= categoria.name %>" selected><%= categoria.name %> </option>
+								<% } else { %>
+									<option value="<%= categoria.name %>"> <%= categoria.name %> </option>
+								<% } %>
+							<% } %>
 							<option value="">Elegí</option>
 							<option value="in-sale">En oferta</option>
 							<option value="visited" >Últimos agregados</option>
